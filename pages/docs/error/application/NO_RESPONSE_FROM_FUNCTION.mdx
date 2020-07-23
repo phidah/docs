@@ -7,12 +7,16 @@ export const meta = {
   description:
     'The requested Serverless Function failed to respond with a status code.',
   editUrl: 'pages/docs/error/application/NO_RESPONSE_FROM_FUNCTION.mdx',
-  lastEdited: '2020-07-23T20:06:13.000Z'
+  lastEdited: '2020-07-23T20:56:53.000Z'
 }
 
 #### Application Error
 
-The application did not respond with a status code, this is due to an error being thrown before the response could be sent.
+The application did not respond correctly, this is likely due to an exception being thrown from the function handler. Other reasons for this could be the following:
+
+- A global uncaught exception.
+- A global unhandled rejection.
+- A deployment that introduced incorrect syntax.
 
 <br />
 
@@ -26,10 +30,10 @@ The application did not respond with a status code, this is due to an error bein
 
 #### Troubleshoot
 
-- Open the [realtime request logs](/knowledge/where-are-vercel-logs#function-logs) for the application in a separate tab - this tab must be kept open while reproducing the error.
+- Open the [realtime request logs](/knowledge/where-are-vercel-logs#function-logs) for the application in a separate tab - this tab **must be kept open** while reproducing the error.
 - Repeat the application behavior that led to the error being thrown and review the realtime request logs where it will now show.
 - Use the information contained within the error present in the logs to understand where the function is failing.
-- Implement [Log Drains](/blog/log-drains) to persist errors from Serverless Functions.
+- If you're yet to implement a [Log Drain](/blog/log-drains), you can create one to persist errors from Serverless Functions.
 
 export default ({ children }) => <Standard meta={meta}>{children}</Standard>
 
