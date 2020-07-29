@@ -560,7 +560,8 @@ class Header extends Component {
           }
 
           :global(.header .left-nav),
-          :global(.header .right-nav) {
+          :global(.header .right-nav), 
+          :global(.header .search) {
             flex: 1 1 100%;
             display: flex;
           }
