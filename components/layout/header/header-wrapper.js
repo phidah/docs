@@ -9,7 +9,7 @@ const Header = ({
   children,
   isTop,
   detached,
-  isAmp
+  isAmp,
 }) => (
   <header className={className}>
     <Wrapper className="content">{children}</Wrapper>
@@ -26,6 +26,7 @@ const Header = ({
       header > :global(.content) {
         align-items: center;
         display: flex;
+        justify-content: space-between;
         height: 100%;
       }
 

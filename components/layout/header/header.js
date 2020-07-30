@@ -48,17 +48,17 @@ class Header extends Component {
     menuActive: false,
     query: '',
     searchState: {
-      query: this.getSearchQ()
-    }
+      query: this.getSearchQ(),
+    },
   }
 
   componentDidMount() {
     const {
-      searchState: { query }
+      searchState: { query },
     } = this.state
     if (query && document.referrer.includes('amp')) {
       // focus algolia to show results
-      const sel = selector => document.querySelector(selector)
+      const sel = (selector) => document.querySelector(selector)
       sel('.search-wrapper input').focus()
     }
   }
@@ -68,12 +68,12 @@ class Header extends Component {
       this.props.hideHeader &&
       this.props.hideHeader !== prevProps.hideHeader
     ) {
-      const sel = selector => document.querySelector(selector)
+      const sel = (selector) => document.querySelector(selector)
       sel('.search-wrapper input').blur()
     }
   }
 
-  onLogoRightClick = event => {
+  onLogoRightClick = (event) => {
     event.preventDefault()
     Router.push('/design')
   }
@@ -88,19 +88,19 @@ class Header extends Component {
 
   onSuggestionSelected = (_, { suggestion }) => {
     this.setState({
-      query: suggestion.title
+      query: suggestion.title,
     })
   }
 
   onSuggestionCleared = () => {
     this.setState({
-      query: ''
+      query: '',
     })
   }
 
   handleAvatarClick = () => {
-    this.setState(state => ({
-      menuActive: !state.menuActive
+    this.setState((state) => ({
+      menuActive: !state.menuActive,
     }))
   }
 
@@ -115,7 +115,7 @@ class Header extends Component {
 
   handleClickOutsideMenu = () => {
     this.setState(() => ({
-      menuActive: false
+      menuActive: false,
     }))
   }
 
@@ -146,12 +146,12 @@ class Header extends Component {
           indexName="prod_docs"
           searchClient={searchClient}
           searchState={this.state.searchState}
-          onSearchStateChange={searchState => {
+          onSearchStateChange={(searchState) => {
             this.setState({
               searchState: {
                 ...this.state.searchState,
-                ...searchState
-              }
+                ...searchState,
+              },
             })
           }}
         >
@@ -221,10 +221,10 @@ class Header extends Component {
       dynamicSearch,
       isTop,
       inHero,
-      data
+      data,
     } = this.props
     const dashboard = getDashboardHref(user, currentTeamSlug)
-    const buildAmpNavClass = classes => {
+    const buildAmpNavClass = (classes) => {
       return isAmp
         ? `'${classes}' + ( header.active ? ' active' : '')`
         : undefined
@@ -295,7 +295,7 @@ class Header extends Component {
                         router.pathname.startsWith('/docs/integrations') ||
                         router.pathname.startsWith('/docs/cli') ||
                         router.pathname.startsWith('/docs/runtimes') ||
-                        router.pathname.startsWith('/docs/configuration')
+                        router.pathname.startsWith('/docs/configuration'),
                     })}
                   >
                     <MenuPopOver
@@ -304,24 +304,24 @@ class Header extends Component {
                       primaryList={[
                         {
                           title: `${PRODUCT_SHORT_NAME} CLI`,
-                          url: '/docs/cli'
+                          url: '/docs/cli',
                         },
                         {
                           title: 'Configuration',
-                          url: '/docs/configuration'
+                          url: '/docs/configuration',
                         },
                         {
                           title: 'Runtimes',
-                          url: '/docs/runtimes'
+                          url: '/docs/runtimes',
                         },
                         {
                           title: 'Platform API',
-                          url: '/docs/api'
+                          url: '/docs/api',
                         },
                         {
                           title: 'Integrations API',
-                          url: '/docs/integrations'
-                        }
+                          url: '/docs/integrations',
+                        },
                       ]}
                     />
                   </div>
@@ -560,9 +560,8 @@ class Header extends Component {
           }
 
           :global(.header .left-nav),
-          :global(.header .right-nav), 
-          :global(.header .search) {
-            flex: 1 1 100%;
+          :global(.header .right-nav) {
+            
             display: flex;
           }
 
