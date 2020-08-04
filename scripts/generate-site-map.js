@@ -6,7 +6,7 @@ const productNames = require('../lib/name-constants.json')
 
 const DOMAIN = 'https://vercel.com'
 
-const EXCLUDE_SITE_PATHS = ['/docs/domains-and-aliases']
+const EXCLUDE_SITE_PATHS = ['/docs/domains-and-aliases', '/docs/error']
 
 const META = /export\s+const\s+meta\s+=\s+({[\s\S]*?\n})/
 const SITEMAP_PATH = 'public/sitemap.xml'
