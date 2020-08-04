@@ -6,7 +6,7 @@ const productNames = require('../lib/name-constants.json')
 
 const DOMAIN = 'https://vercel.com'
 
-const EXCLUDE_SITE_PATHS = ['/docs/error', '/docs/domains-and-aliases']
+const EXCLUDE_SITE_PATHS = ['/docs/domains-and-aliases']
 
 const META = /export\s+const\s+meta\s+=\s+({[\s\S]*?\n})/
 const SITEMAP_PATH = 'public/sitemap.xml'
@@ -69,13 +69,6 @@ function xmlUrlNode(pagePath) {
           .replace(/\${CDN_NAME}/g, productNames.cdnName)
           .replace(/\${CDN_SHORT_NAME}/g, productNames.cdnShortName)
           .replace(/\${PRODUCT_SHORT_NAME}/g, productNames.productShortName)
-          .replace(/\${PRODUCT_V1_NAME}/g, productNames.productV1Name)
-          .replace(/\${ORG_V1_NAME}/g, productNames.orgV1Name)
-          .replace(
-            /\${PRODUCT_SHORT_V1_NAME}/g,
-            productNames.productShortV1Name
-          )
-          .replace(/\${CLI_V1_NAME}/g, productNames.cliV1Name)
           .replace(/\${GITHUB_APP_NAME}/g, productNames.githubAppName)
           .replace(/\${GITLAB_APP_NAME}/g, productNames.gitlabAppName)
           .replace(/\${BITBUCKET_APP_NAME}/g, productNames.bitbucketAppName) +
