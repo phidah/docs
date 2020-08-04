@@ -12,15 +12,15 @@ const withMDX = require('@next/mdx')({
 const docsRedirects = [
   [
     'v2/git-integrations/zeit-now-for-bitbucket',
-    'v2/git-integrations/vercel-for-bitbucket',
+    'git-integrations/vercel-for-bitbucket',
   ],
   [
     'v2/git-integrations/zeit-now-for-github',
-    'v2/git-integrations/vercel-for-github',
+    'git-integrations/vercel-for-github',
   ],
   [
     'v2/git-integrations/zeit-now-for-gitlab',
-    'v2/git-integrations/vercel-for-gitlab',
+    'git-integrations/vercel-for-gitlab',
   ],
   [
     'error/application/NO_STATUS_CODE_FROM_FUNCTION',
@@ -150,7 +150,7 @@ const guidesRedirects = [
 
 module.exports = withMDX({
   target: 'serverless',
- 
+
   rewrites() {
     return [
       // TODO: test out basePath to replace below rewrites
@@ -192,37 +192,37 @@ module.exports = withMDX({
       {
         source: '/docs/github',
         permanent: true,
-        destination: '/docs/v2/git-integrations/zeit-now-for-github',
+        destination: '/docs/git-integrations/zeit-now-for-github',
       },
       {
         source: '/docs/gitlab',
         permanent: true,
-        destination: '/docs/v2/git-integrations/zeit-now-for-gitlab',
+        destination: '/docs/git-integrations/zeit-now-for-gitlab',
       },
       {
         source: '/docs/bitbucket',
         permanent: true,
-        destination: '/docs/v2/git-integrations/zeit-now-for-bitbucket',
+        destination: '/docs/git-integrations/zeit-now-for-bitbucket',
       },
       {
         source: '/docs/v2/git-integration',
         permanent: true,
-        destination: '/docs/v2/git-integrations',
+        destination: '/docs/git-integrations',
       },
       {
         source: '/docs/v2/more/now-for-github',
         permanent: true,
-        destination: '/docs/v2/git-integrations/zeit-now-for-github',
+        destination: '/docs/git-integrations/zeit-now-for-github',
       },
       {
         source: '/docs/v2/more/now-for-gitlab',
         permanent: true,
-        destination: '/docs/v2/git-integrations/zeit-now-for-gitlab',
+        destination: '/docs/git-integrations/zeit-now-for-gitlab',
       },
       {
         source: '/docs/v2/more/now-for-bitbucket',
         permanent: true,
-        destination: '/docs/v2/git-integrations/zeit-now-for-bitbucket',
+        destination: '/docs/git-integrations/zeit-now-for-bitbucket',
       },
       {
         source: '/docs/:name(integrations|now-cli)/v2/:path*',
@@ -243,52 +243,37 @@ module.exports = withMDX({
       {
         source: '/docs/v2/integrations/now-for-github',
         permanent: true,
-        destination: '/docs/v2/git-integrations/zeit-now-for-github',
+        destination: '/docs/git-integrations/zeit-now-for-github',
       },
       {
         source: '/docs/v2/integrations/now-for-gitlab',
         permanent: true,
-        destination: '/docs/v2/git-integrations/zeit-now-for-gitlab',
+        destination: '/docs/git-integrations/zeit-now-for-gitlab',
       },
       {
         source: '/docs/v2/integrations/now-for-bitbucket',
         permanent: true,
-        destination: '/docs/v2/git-integrations/zeit-now-for-bitbucket',
+        destination: '/docs/git-integrations/zeit-now-for-bitbucket',
       },
       {
         source: '/docs/aliasing',
         permanent: true,
-        destination: '/docs/v2/aliasing-a-deployment',
+        destination: '/docs/aliasing-a-deployment',
       },
       {
         source: '/docs/v2/routing/:path*',
         permanent: true,
-        destination: '/docs/v2/edge-network/:path*',
+        destination: '/docs/edge-network/:path*',
       },
       {
         source: '/docs/v2/network/:path*',
         permanent: true,
-        destination: '/docs/v2/edge-network/:path*',
+        destination: '/docs/edge-network/:path*',
       },
       {
         source: '/docs/v2/edge-network/regions-and-providers/:path*',
         permanent: true,
-        destination: '/docs/v2/edge-network/regions/:path*',
-      },
-      {
-        source: '/docs/features/:path*',
-        permanent: true,
-        destination: '/docs/v1/features/:path*',
-      },
-      {
-        source: '/docs/static-deployments/:path*',
-        permanent: true,
-        destination: '/docs/v1/static-deployments/:path*',
-      },
-      {
-        source: '/docs/deployment-types/:path*',
-        permanent: true,
-        destination: '/docs/v1/deployment-types/:path*',
+        destination: '/docs/edge-network/regions/:path*',
       },
       {
         source: '/docs/(|v1/)guides/updating-now-cli',
@@ -301,14 +286,9 @@ module.exports = withMDX({
         destination: '/guides',
       },
       {
-        source: '/docs/getting-started/:path*',
+        source: '/docs/getting-started/(.*)',
         permanent: true,
-        destination: '/docs/v1/getting-started/:path*',
-      },
-      {
-        source: '/docs/v2/getting-started/(.*)',
-        permanent: true,
-        destination: '/docs/v2/introduction',
+        destination: '/docs/introduction',
       },
       {
         source:
@@ -330,12 +310,12 @@ module.exports = withMDX({
       {
         source: '/docs/v2/deployments/environment-variables-and-secrets',
         permanent: true,
-        destination: '/docs/v2/build-step#environment-variables',
+        destination: '/docs/build-step#environment-variables',
       },
       {
         source: '/docs/v2/advanced/concepts(.*)',
         permanent: true,
-        destination: '/docs/v2/platform/deployments',
+        destination: '/docs/platform/deployments',
       },
       {
         source: '/docs/v2/deployments/routes(.*)',
@@ -350,32 +330,22 @@ module.exports = withMDX({
       {
         source: '/docs/v2/deployments/(.*)',
         permanent: true,
-        destination: '/docs/v2/introduction',
+        destination: '/docs/introduction',
       },
       {
         source: '/docs/v2/domains-and-aliases/aliasing-a-deployment',
         permanent: true,
-        destination: '/docs/v2/custom-domains#deploying-with-your-domain',
+        destination: '/docs/custom-domains#deploying-with-your-domain',
       },
       {
         source: '/docs/v2/domains-and-aliases/aliasing-a-deployment',
         permanent: true,
-        destination: '/docs/v2/custom-domains#deploying-with-your-domain',
+        destination: '/docs/custom-domains#deploying-with-your-domain',
       },
       {
         source: '/docs/v2/domains-and-aliases/cdn',
         permanent: true,
-        destination: '/docs/v2/serverless-functions/edge-caching',
-      },
-      {
-        source: '/docs/other/:path*',
-        permanent: true,
-        destination: '/docs/v1/other/:path*',
-      },
-      {
-        source: '/docs/clients/:path*',
-        permanent: true,
-        destination: '/docs/v1/clients/:path*',
+        destination: '/docs/serverless-functions/edge-caching',
       },
       {
         source: '/examples/nodejs-express',
@@ -400,49 +370,48 @@ module.exports = withMDX({
       {
         source: '/docs/v2/advanced/platform/:path*',
         permanent: true,
-        destination: '/docs/v2/platform/:path*',
+        destination: '/docs/platform/:path*',
       },
       {
         source: '/docs/v2/development/basic/(.*)',
         permanent: true,
-        destination:
-          '/docs/v2/deployment/serverless-functions#local-development',
+        destination: '/docs/deployment/serverless-functions#local-development',
       },
       {
         source: '/docs/v2/development/environment-variables(.*)',
         permanent: true,
-        destination: '/docs/v2/build-step#environment-variables',
+        destination: '/docs/build-step#environment-variables',
       },
       {
         source: '/docs/v2/development/(.*)',
         permanent: true,
-        destination: '/docs/v2/serverless-functions/introduction',
+        destination: '/docs/serverless-functions/introduction',
       },
       {
         source: '/docs/v2/domains-and-aliases/(.*)',
         permanent: true,
-        destination: '/docs/v2/custom-domains',
+        destination: '/docs/custom-domains',
       },
       {
         source: '/docs/v2/advanced/:path*',
         permanent: true,
-        destination: '/docs/v2/more/:path*',
+        destination: '/docs/more/:path*',
       },
       {
         source: '/docs/version-detection',
         permanent: true,
         destination:
-          '/docs/v2/platform/frequently-asked-questions#platform-version-detection',
+          '/docs/platform/frequently-asked-questions#platform-version-detection',
       },
       {
         source: '/docs/v1/guides/how-to-use-cloudflare',
         permanent: true,
-        destination: '/docs/v2/custom-domains#cloudflare',
+        destination: '/docs/custom-domains#cloudflare',
       },
       {
         source: '/docs/v2/serverless-functions/env-and-secrets',
         permanent: true,
-        destination: '/docs/v2/build-step#environment-variables',
+        destination: '/docs/build-step#environment-variables',
       },
       {
         source: '/docs/now-cli/:path*',
@@ -452,12 +421,12 @@ module.exports = withMDX({
       {
         source: '/guides/setup-godaddy-domain-vercel',
         permanent: true,
-        destination: '/docs/v2/custom-domains',
+        destination: '/docs/custom-domains',
       },
       {
         source: '/guides/setup-namecheap-domain-vercel',
         permanent: true,
-        destination: '/docs/v2/custom-domains',
+        destination: '/docs/custom-domains',
       },
       {
         source: '/docs/v2/:path*',
