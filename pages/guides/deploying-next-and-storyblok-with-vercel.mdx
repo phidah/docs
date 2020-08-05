@@ -97,12 +97,12 @@ At this point, return back to your **Content Dashboard** and click **Settings** 
 
 Firstly, create a project directory and `cd` into it like so:
 
-<Snippet dark text="mkdir my-nextjs-storyblok-project && cd my-nextjs-storyblok-project" />
+<Snippet width="100%"dark text="mkdir my-nextjs-storyblok-project && cd my-nextjs-storyblok-project" />
 <Caption>Creating and entering into the project directory.</Caption>
 
 Next, initialize your project, creating a `package.json` file in the process:
 
-<Snippet dark text="npm init -y" />
+<Snippet width="100%"dark text="npm init -y" />
 <Caption>Initializing your project with a <InlineCode>package.json</InlineCode> file.</Caption>
 
 <Note>
@@ -113,7 +113,7 @@ Next, initialize your project, creating a `package.json` file in the process:
 
 Next, add the project dependencies:
 
-<Snippet dark text="npm i next react react-dom" />
+<Snippet width="100%"dark text="npm i next react react-dom" />
 <Caption>Adding <InlineCode>next</InlineCode>, <InlineCode>react</InlineCode> and <InlineCode>react-dom</InlineCode> as dependencies to your project.</Caption>
 
 With the project initialized, create a `/pages` directory with a `index.js` file inside that uses the following code:
@@ -266,6 +266,26 @@ Now, add the following scripts to your `package.json` file:
 <Caption>
   Adding scripts to your <InlineCode>package.json</InlineCode> file for your
   Next.js + Storyblok project.
+</Caption>
+
+Next, you will make your API keys available to your app during local development by creating a `.env.local` file.
+
+Create a `.env.local` file at the root of your project directory with the following code, adding your API keys where instructed:
+
+```bash
+STORYBLOK_API_TOKEN=your-api-token
+```
+
+<Caption>
+  An example <InlineCode>.env.local</InlineCode> file for your Next.js +
+  Storyblok project.
+</Caption>
+
+Lastly, to make your API key available for [cloud deployment](/docs/v2/deployments/basics/), create a [Secret](/docs/v2/deployments/environment-variables-and-secrets#securing-environment-variables-using-secrets) with the command below:
+
+<Snippet width="100%"dark text="vercel secrets add STORYBLOK_API_TOKEN your-api-token" />
+<Caption>
+  Adding the <InlineCode>STORYBLOK_API_TOKEN</InlineCode> secret to your project using <Link href="/docs/cli#commands/secrets">Secrets</Link>.
 </Caption>
 
 With those steps out the way you are now able to run your app. You can develop your app locally using the following command:
