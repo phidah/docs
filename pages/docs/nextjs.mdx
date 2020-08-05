@@ -1,0 +1,112 @@
+import Doc from '~/components/layout/docs'
+import { Image } from '~/components/media'
+import { Quickstart, GitImports } from '~/components/quickstarts'
+import ProductName from '~/components/name/product-name'
+import { PRODUCT_NAME } from '~/lib/constants'
+import OrgName from '~/components/name/org-name'
+
+import { nextjsQuickstart } from '~/lib/data/v2/quickstarts'
+
+export const meta = {
+  title: `Next.js`,
+  description: `An introduction to the ${PRODUCT_NAME} platform and how to get started deploying any kind of application.`,
+  editUrl: 'pages/docs/nextjs.mdx',
+  lastEdited: '2020-08-05T02:33:17.000Z',
+}
+
+[Next.js](https://nextjs.org/), the React Framework, is the perfect solution for Jamstack applications built with static assets and serverless functions.
+
+Next.js was created by Vercel, and since its creation it has been actively maintained and supported by Vercel and its growing community of developers. You can expect first class support of all Next.js features out the box with no configuration required.
+
+## Getting Started
+
+Once you have [signed up to <OrgName />](/signup), you can use our [Git Integrations](/docs/v2/git-integrations) with [GitHub](/docs/v2/git-integrations/vercel-for-github), [GitLab](/docs/v2/git-integrations/vercel-for-gitlab), or [Bitbucket](/docs/v2/git-integrations/vercel-for-bitbucket) to deploy an existing Next.js project by selecting a repository from your Git account:
+
+<GitImports />
+
+If you don't have an app yet, use the quickstart below, based on our [Next.js Example](https://github.com/vercel/vercel/tree/master/examples/nextjs), to get started with Next.js and Vercel as fast as possible:
+
+<Quickstart quickstart={nextjsQuickstart.name} {...nextjsQuickstart} />
+
+Furthermore, in the ["Import Git Repository"](/import/git) page you can create a project using one of the [examples in the Next.js repo](https://github.com/vercel/next.js/tree/canary/examples).
+
+To learn more about Next.js, check out the [official learning course](https://nextjs.org/learn/basics/create-nextjs-app?utm_source=vercel-site&utm_medium=docs&utm_campaign=next-website), created by the Next.js team. It's an interactive course to get you started with Next.js while building your own blog.
+
+## No Configuration Required
+
+Any Next.js app is compatible with Vercel from the start. Vercel configuration (`vercel.json`) is not required to get your app up and running. Furthermore, most of the features handled by `vercel.json` are already covered by Next.js itself.
+
+## Supported Next.js Features
+
+With the exclusion of custom servers, which can't be deployed on Vercel, every Next.js feature should work out of the box, including (but not limited to):
+
+- An intuitive [page-based routing](https://nextjs.org/docs/routing/introduction) system, with support for [dynamic routes](https://nextjs.org/docs/routing/dynamic-routes) and [catch all routes](https://nextjs.org/docs/routing/dynamic-routes#catch-all-routes).
+- Next.js pages are hybrid and [pre-rerendered](https://nextjs.org/docs/basic-features/pages#pre-rendering) by default. You can choose between [Static Generation](https://nextjs.org/docs/basic-features/pages#static-generation-recommended) and [Server-side Rendering](https://nextjs.org/docs/basic-features/pages#server-side-rendering) on a per-page basis, with included support for [incremental revalidation](https://nextjs.org/docs/basic-features/data-fetching#incremental-static-regeneration) of static pages.
+- [Environment Variables](https://nextjs.org/docs/basic-features/environment-variables) support for [Secrets](#adding-secrets) and default configurations.
+- Client-side routing with optimized prefetching
+- [API routes](https://nextjs.org/docs/api-routes/introduction) to build API endpoints with Serverless Functions
+- [Static File Serving](https://nextjs.org/docs/basic-features/static-file-serving)
+
+Next.js will give you the best developer experience, and Vercel will optimize and scale your application.
+
+Static assets (JS, CSS, images, etc) will be served from our [global edge network](https://vercel.com/docs/v2/edge-network/overview). API routes, and pages that use Server-side Rendering, will automatically become isolated Serverless Functions.
+
+## Advanced Next.js Usage
+
+While working with Next.js, your focus should be on the [Next.js documentation](https://nextjs.org/docs). Vercel won't change or dictate how your Next.js application should be built. This section will focus on how some of Vercel features relate to Next.js.
+
+### Adding Secrets
+
+In a Next.js application, you can use [Environment Variables](https://nextjs.org/docs/basic-features/environment-variables) to add secrets in a [`.env.local`](https://nextjs.org/docs/basic-features/environment-variables#loading-environment-variables) file. For example:
+
+```bash
+# .env.local
+DB_HOST=localhost
+DB_USER=myuser
+DB_PASS=mypassword
+```
+
+This loads `process.env.DB_HOST`, `process.env.DB_USER`, and `process.env.DB_PASS` into the Node.js environment, allowing you to use them in [Next.js data fetching methods](https://nextjs.org/docs/basic-features/data-fetching) and [API routes](https://nextjs.org/docs/api-routes/introduction). For example, using [`getStaticProps`](https://nextjs.org/docs/basic-features/data-fetching#getstaticprops-static-generation):
+
+```js
+// pages/index.js
+export async function getStaticProps() {
+  const db = await myDB.connect({
+    host: process.env.DB_HOST,
+    username: process.env.DB_USER,
+    password: process.env.DB_PASS,
+  })
+  // ...
+}
+```
+
+Because secrets are private, `.env.local` is ignored by git and it won't be available for deployments, this is expected as it's only intended to be used in development.
+
+To make secrets work in a Vercel project, you can [add Environment Variables in your Project Settings](/docs/v2/build-step?query=secrets#environment-variables) that match the variables inside `.env.local`. For example, you would add the variables from the example above like so:
+
+<Image
+  src={`${process.env.ASSETS}/docs/nextjs/env-vars.png`}
+  width={1200}
+  height={635}
+  shadow
+/>
+
+Production deployments will now have access to the required environment variables, without having to expose them in your repo.
+
+We can go one step further and add development secrets in the "**Development**" tab, which can then be downloaded to `.env.local` in your local project:
+
+```bash
+vercel env pull .env.local
+```
+
+export default ({ children }) => <Doc meta={meta}>{children}</Doc>
+
+export const config = {
+  amp: 'hybrid',
+}
+
+### Static HTML Export
+
+`next export` allows your app to be statically exported, however, it's not required for Vercel deployments as Next.js pages will be automatically exported to HTML thanks to the hybrid nature of pages. And Vercel will automatically serve the static assets from the [global edge network](https://vercel.com/docs/v2/edge-network/overview)
+
+With Next.js you don't have to lock into static only or serverless only, you are free to decide on the go, in a per-page basis.
