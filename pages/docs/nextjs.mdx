@@ -11,7 +11,7 @@ export const meta = {
   title: `Next.js`,
   description: `An introduction to the ${PRODUCT_NAME} platform and how to get started deploying any kind of application.`,
   editUrl: 'pages/docs/nextjs.mdx',
-  lastEdited: '2020-08-05T03:14:00.000Z',
+  lastEdited: '2020-08-05T03:14:18.000Z',
 }
 
 [Next.js](https://nextjs.org/), the React Framework, is the perfect solution for Jamstack applications built with static assets and serverless functions.
@@ -101,14 +101,14 @@ We can go one step further and add development secrets in the "**Development**" 
 vercel env pull .env.local
 ```
 
-export default ({ children }) => <Doc meta={meta}>{children}</Doc>
-
-export const config = {
-  amp: 'hybrid',
-}
-
 ### Static HTML Export
 
 `next export` allows your app to be statically exported, however, it's not required for Vercel deployments as Next.js pages will be automatically exported to HTML whenever possible thanks to the hybrid nature of pages. Vercel will automatically serve static assets from the [global edge network](https://vercel.com/docs/v2/edge-network/overview).
 
 With Next.js you don't have to lock into static only or serverless only, instead you are free to decide on the go, in a per-page basis.
+
+export default ({ children }) => <Doc meta={meta}>{children}</Doc>
+
+export const config = {
+  amp: 'hybrid',
+}
